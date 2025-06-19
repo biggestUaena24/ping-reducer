@@ -1,1 +1,1 @@
-# Creating a vpn for my own use.. maybe?
+# Creating a ping reducer for my own use.. maybe?
