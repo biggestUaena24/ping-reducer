@@ -10,7 +10,6 @@ class QosPolicy:
         self.is_windows_home = self._check_windows_edition()
         
     def _check_windows_edition(self):
-        """Check if running on Windows Home edition"""
         try:
             gpedit_path = os.path.join(os.environ['WINDIR'], 'System32', 'gpedit.msc')
             if not os.path.exists(gpedit_path):

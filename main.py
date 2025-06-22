@@ -23,7 +23,7 @@ def check_and_install_packages():
             subprocess.check_call([
                 sys.executable, "-m", "pip", "install"
             ] + missing_packages)
-            print("✅ All packages installed successfully")
+            print("All packages installed successfully")
         except subprocess.CalledProcessError as e:
             print(f"❌ Failed to install packages: {e}")
             sys.exit(1)
@@ -33,7 +33,7 @@ def check_and_install_packages():
         import requests
         return pyuac
     except ImportError as e:
-        print(f"❌ Failed to import packages after installation: {e}")
+        print(f"Failed to import packages after installation: {e}")
         sys.exit(1)
 
 def qos_worker():
@@ -85,6 +85,6 @@ if __name__ == "__main__":
             main()
             
     except Exception as e:
-        print(f"❌ Application failed to start: {e}")
+        print(f"Application failed to start: {e}")
         input("Press Enter to exit...")
         sys.exit(1)
