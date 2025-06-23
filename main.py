@@ -3,6 +3,7 @@ import sys
 import threading
 import time
 import importlib.util
+from tkinter import *
 
 def check_and_install_packages():
     required_packages = {
@@ -60,19 +61,26 @@ def main():
         daemon=True,
         name="QoS-Worker"
     )
-    qos_thread.start()
     
     time.sleep(1)
     
     print("Starting ping monitor in main thread...")
+    root = Tk()
+    root.title ("League ping enhancer")
+    button = Button(root, text="execute", width=25, command=qos_thread.start())
+    var1 = IntVar()
+    Checkbutton(root, text='qos policy', variable=var1).grid(row=0, sticky=W)
+    button.pack
     try:
         from ping_monitor import PingMonitor
+        mainloop()
         ping_monitor = PingMonitor()
         ping_monitor.start_monitor(interval=2)
     except KeyboardInterrupt:
         print("\nShutting down...")
     except Exception as e:
         print(f"Ping monitor failed: {e}")
+
 
 if __name__ == "__main__":
     try:
