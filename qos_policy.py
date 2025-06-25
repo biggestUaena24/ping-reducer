@@ -216,7 +216,7 @@ class QosPolicy:
                 f'name="{self.qos_policy_name}_UDP"'
             ], capture_output=True)
             
-            print("✅ QoS settings removed")
+            print("QoS settings removed")
             return True
             
         except Exception as e:
