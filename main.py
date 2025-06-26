@@ -1,11 +1,9 @@
-import subprocess
-import sys
 import threading
-import importlib.util
 import tkinter as tk
 from tkinter import ttk, scrolledtext, messagebox
 from datetime import datetime
 import queue
+import pyuac
 
 class NetworkOptimizerGUI:
     def __init__(self):
@@ -366,45 +364,8 @@ class NetworkOptimizerGUI:
         self.log_message("Network Optimizer GUI started", "INFO")
         self.root.mainloop()
 
-def check_and_install_packages():
-    required_packages = {
-        'requests': 'requests',
-        'pyuac': 'pyuac',
-        'pywin32': 'pywin32'
-    }
-    
-    missing_packages = []
-    
-    for package_name, pip_name in required_packages.items():
-        if importlib.util.find_spec(package_name) is None:
-            missing_packages.append(pip_name)
-    
-    if missing_packages:
-        print(f"Installing missing packages: {', '.join(missing_packages)}")
-        try:
-            subprocess.check_call([
-                sys.executable, "-m", "pip", "install"
-            ] + missing_packages)
-            print("All packages installed successfully")
-        except subprocess.CalledProcessError as e:
-            print(f"Failed to install packages: {e}")
-            return None
-    
-    try:
-        import pyuac
-        import requests
-        return pyuac
-    except ImportError as e:
-        print(f"Failed to import packages after installation: {e}")
-        return None
-
 def main():
-    try:
-        pyuac = check_and_install_packages()
-        if not pyuac:
-            input("Press Enter to exit...")
-            return
-        
+    try: 
         if not pyuac.isUserAdmin():
             print("Administrator privileges required. Re-launching as admin...")
             pyuac.runAsAdmin()

@@ -20,9 +20,15 @@ A comprehensive network monitoring and Quality of Service (QoS) policy managemen
 ## Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/yourusername/ping-monitor-qos.git
    cd ping-reducer
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
    ```
 
 ## Usage

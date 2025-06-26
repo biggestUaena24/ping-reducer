@@ -1,0 +1,3 @@
+pyuac
+pywin32
+requests
